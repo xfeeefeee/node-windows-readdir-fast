@@ -1,6 +1,6 @@
 {
   "name": "node-windows-readdir-fast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "fast readdir with filetimes lengths and attributes for Windows",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -37,10 +37,10 @@
   "homepage": "https://github.com/xfeeefeee/node-windows-readdir-fast",
   "gypfile": true,
   "dependencies": {
-    "bindings": "^1.5.0"
+    "bindings": "^1.5.0",
+    "node-addon-api": "^8.3.0"
   },
   "devDependencies": {
-    "node-addon-api": "^8.3.0",
     "ts-node": "^10.9.2",
     "tsup": "^8.3.6",
     "typescript": "^5.7.3"
