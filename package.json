@@ -1,0 +1,48 @@
+{
+  "name": "node-windows-readdir-fast",
+  "version": "1.0.0",
+  "description": "fast readdir with filetimes lengths and attributes for Windows",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "readdirFast.cc",
+    "binding.gyp",
+    "test.js"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "benchmark": "node benchmark.js",
+    "package": "npm run build && npm pack",
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xfeeefeee/node-windows-readdir-fast.git"
+  },
+  "keywords": [
+    "node.js",
+    "readdir",
+    "FindFirstFile",
+    "FindFirstFileEx",
+    "NtQueryDirectoryFile",
+    "NtQueryDirectoryFileEx"
+  ],
+  "author": "xfeeefeee <xfeeefeee@gmail.com>",
+  "license": "blessing",
+  "bugs": {
+    "url": "https://github.com/xfeeefeee/node-windows-readdir-fast/issues"
+  },
+  "homepage": "https://github.com/xfeeefeee/node-windows-readdir-fast",
+  "gypfile": true,
+  "dependencies": {
+    "bindings": "^1.5.0"
+  },
+  "devDependencies": {
+    "node-addon-api": "^8.3.0",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
+  }
+}
