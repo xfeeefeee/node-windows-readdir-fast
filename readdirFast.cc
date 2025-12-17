@@ -288,7 +288,7 @@ static inline void writeFileToStream(const FILE_DIRECTORY_INFORMATION* file, Bin
 	uint32_t attributes = file->FileAttributes;
 	stream.write(&attributes, sizeof(attributes));
 	// length
-	double length = (double)(file->EndOfFile.QuadPart - 1);
+	double length = (double)(file->EndOfFile.QuadPart);
 	stream.write(&length, sizeof(length));
 	// CreationTime
 	double creationTime = (double)filetimeToUnixTimestampInMs(file->CreationTime.QuadPart);
