@@ -244,6 +244,17 @@ static inline long long filetimeToUnixTimestampInMs(long long value) {
 	return value / 10000;
 }
 
+static inline double filetimeToUnixTimestampInFloatingMs(long long value) {
+	/* Windows to Unix Epoch conversion */
+	value -= 116444736000000000LL;
+	// libuv gets seconds and nanoseconds
+	long long tv_sec = value / 10000000;
+	long long tv_nsec = value % 10000000 * 100;
+	double d_sec = static_cast<double>(tv_sec * 1000);
+	double d_msec = static_cast<double>(tv_nsec) / 1000000;
+	return d_sec + d_msec;
+}
+
 static const wchar_t wszDirPrefix[] = L"\\\\?\\";
 static const size_t nbytesDirPrefix = sizeof(wszDirPrefix) - 2;
 static const size_t cchDirPrefix = (sizeof(wszDirPrefix) - 1) / 2;
@@ -291,10 +302,10 @@ static inline void writeFileToStream(const FILE_DIRECTORY_INFORMATION* file, Bin
 	double length = (double)(file->EndOfFile.QuadPart);
 	stream.write(&length, sizeof(length));
 	// CreationTime
-	double creationTime = (double)filetimeToUnixTimestampInMs(file->CreationTime.QuadPart);
+	double creationTime = filetimeToUnixTimestampInFloatingMs(file->CreationTime.QuadPart);
 	stream.write(&creationTime, sizeof(creationTime));
 	// LastWriteTime
-	double lastWriteTime = (double)filetimeToUnixTimestampInMs(file->LastWriteTime.QuadPart);
+	double lastWriteTime = filetimeToUnixTimestampInFloatingMs(file->LastWriteTime.QuadPart);
 	stream.write(&lastWriteTime, sizeof(lastWriteTime));
 }
 
